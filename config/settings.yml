@@ -1,0 +1,40 @@
+dbconf:
+     # 数据库类型 mysql, sqlite3, postgres, sqlserver
+     driver: mysql
+     source: root:root@tcp(127.0.0.1:3306)/goflydb?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+     #数据库名称-在api接口管理时使用
+     name: goflydb
+jwt:
+     secret: 3Bde3BGEbYqtqyEUzW3ry8jKFcaPH17fRmTmqE7MDr05Lwj95uruRKrrkb44TJ4s
+     jwt_ttl: 43200
+app:
+     env: dev
+     port: 8105
+     #接口合法性验证
+     apisecret: gofly@888
+     #接口JWT验证-不添加请求时报403
+     allowurl: http://localhost:8905,http://localhost:8906,https://sg.goflys.cn
+     #token超时时间单位分钟 
+     tokenouttime: 10 
+     #调用cpu个数
+     cpunum: 3
+     # Gin 框架在运行的时候默认是debug模式 有： 开发：debug，生产：release，测试模式：test
+     runlogtype: debug
+     # 配置根域名访问重定向路径,默认是业务端后台
+     rootview: webbusiness
+     #不需要token验证和接口合法性-的根模块
+     NoVerifyRoot: resource,home
+     #不需要验证token-具体路径
+     noVerify: /common/uploadfile/get_image,
+     #不需要接口合法性-具体路径
+     noValidity: /wxoffi/service/getPost_api
+log:
+     level: info  # 日志等级debug
+     root_dir: ./runtime/logs # 日志根目录
+     filename: app.log # 日志文件名称
+     format: json # 写入格式 可选json
+     show_line: true # 是否显示调用行
+     max_backups: 3 # 旧文件的最大个数
+     max_size: 500 # 日志文件最大大小（MB）
+     max_age: 28 # 旧文件的最大保留天数
+     compress: true # 是否压缩
